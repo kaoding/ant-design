@@ -3045,7 +3045,7 @@ exports[`renders components/menu/demo/inline-collapsed.tsx extend context correc
   style="width: 256px;"
 >
   <button
-    class="ant-btn ant-btn-primary"
+    class="ant-btn ant-btn-primary ant-btn-solid"
     style="margin-bottom: 16px;"
     type="button"
   >
@@ -3938,7 +3938,7 @@ Array [
               class="ant-menu-title-content"
             >
               <span
-                class="ant-typography ant-typography-ellipsis ant-typography-single-line ant-typography-ellipsis-single-line"
+                class="ant-typography ant-typography-ellipsis ant-typography-ellipsis-single-line"
               >
                 Ant Design, a design language for background applications, is refined by Ant UED Team
               </span>
@@ -4106,7 +4106,7 @@ Array [
             class="ant-menu-title-content"
           >
             <span
-              class="ant-typography ant-typography-ellipsis ant-typography-single-line ant-typography-ellipsis-single-line"
+              class="ant-typography ant-typography-ellipsis ant-typography-ellipsis-single-line"
             >
               Ant Design, a design language for background applications, is refined by Ant UED Team
             </span>

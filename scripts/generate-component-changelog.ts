@@ -1,4 +1,3 @@
-/* eslint-disable no-loop-func, no-console */
 // Collect from `changelog.md` to get all components changelog
 import path from 'path';
 import fs from 'fs-extra';
@@ -75,6 +74,11 @@ const miscKeys = [
   '🇯🇵',
   '🇮🇩',
   '🇵🇱',
+  '🇲🇳',
+  '🇳🇵',
+  '🇪🇬',
+  '🇪🇸',
+  '🇦🇿',
 ];
 
 (() => {

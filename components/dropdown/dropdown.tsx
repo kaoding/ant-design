@@ -22,7 +22,7 @@ import { OverrideProvider } from '../menu/OverrideContext';
 import { useToken } from '../theme/internal';
 import useStyle from './style';
 
-const Placements = [
+const _Placements = [
   'topLeft',
   'topCenter',
   'topRight',
@@ -33,7 +33,7 @@ const Placements = [
   'bottom',
 ] as const;
 
-type Placement = (typeof Placements)[number];
+type Placement = (typeof _Placements)[number];
 type DropdownPlacement = Exclude<Placement, 'topCenter' | 'bottomCenter'>;
 
 type OverlayFunc = () => React.ReactElement;
@@ -185,14 +185,10 @@ const Dropdown: CompoundedComponent = (props) => {
       },
       child.props.className,
     ),
-    disabled,
+    disabled: child.props.disabled ?? disabled,
   });
-
   const triggerActions = disabled ? [] : trigger;
-  let alignPoint: boolean;
-  if (triggerActions && triggerActions.includes('contextMenu')) {
-    alignPoint = true;
-  }
+  const alignPoint = !!triggerActions?.includes('contextMenu');
 
   // =========================== Open ============================
   const [mergedOpen, setOpen] = useMergedState(false, {
@@ -283,7 +279,7 @@ const Dropdown: CompoundedComponent = (props) => {
   // ============================ Render ============================
   let renderNode = (
     <RcDropdown
-      alignPoint={alignPoint!}
+      alignPoint={alignPoint}
       {...omit(props, ['rootClassName'])}
       mouseEnterDelay={mouseEnterDelay}
       mouseLeaveDelay={mouseLeaveDelay}

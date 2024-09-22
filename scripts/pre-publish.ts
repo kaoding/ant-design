@@ -1,4 +1,3 @@
-/* eslint-disable camelcase, no-async-promise-executor */
 import fs from 'node:fs';
 import runScript from '@npmcli/run-script';
 import { Octokit } from '@octokit/rest';
@@ -6,8 +5,10 @@ import AdmZip from 'adm-zip';
 import axios from 'axios';
 import chalk from 'chalk';
 import Spinnies from 'spinnies';
-
+import dotnev from 'dotenv';
 import checkRepo from './check-repo';
+
+dotnev.config({ override: true });
 
 const { Notification: Notifier } = require('node-notifier');
 const simpleGit = require('simple-git');
@@ -64,7 +65,7 @@ process.on('SIGINT', () => {
   process.exit(1);
 });
 
-const emojify = (status: string = '') => {
+const emojify = (status = '') => {
   if (!status) {
     return '';
   }
@@ -256,7 +257,7 @@ const runPrePublish = async () => {
     firstArtifactFile = await Promise.any([downloadArtifactPromise, downloadOSSPromise]);
   } catch (error) {
     showMessage(
-      chalk.bgRedBright(`下载失败，请确认你当前 ${sha.slice(0, 6)} 位于 master 分支中`),
+      chalk.bgRedBright(`下载失败 ${error}，请确认你当前 ${sha.slice(0, 6)} 位于 master 分支中`),
       'fail',
     );
     process.exit(1);

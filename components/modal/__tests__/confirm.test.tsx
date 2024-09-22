@@ -8,7 +8,7 @@ import { resetWarned } from 'rc-util/lib/warning';
 import type { ModalFuncProps } from '..';
 import Modal from '..';
 import { act, fireEvent, waitFakeTimer } from '../../../tests/utils';
-import ConfigProvider from '../../config-provider';
+import ConfigProvider, { defaultPrefixCls } from '../../config-provider';
 import type { ModalFunc } from '../confirm';
 import destroyFns from '../destroyFns';
 
@@ -82,7 +82,6 @@ describe('Modal.confirm triggers callbacks correctly', () => {
 
   const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-  /* eslint-disable no-console */
   // Hack error to remove act warning
   const originError = console.error;
   console.error = (...args) => {
@@ -93,7 +92,6 @@ describe('Modal.confirm triggers callbacks correctly', () => {
 
     originError(...args);
   };
-  /* eslint-enable */
 
   beforeEach(() => {
     jest.useFakeTimers();
@@ -341,7 +339,7 @@ describe('Modal.confirm triggers callbacks correctly', () => {
         Modal[type]?.({
           title: 'title',
           content: 'content',
-          onOk: (_) => null, // eslint-disable-line no-unused-vars
+          onOk: (_) => null,
         });
         await waitFakeTimer();
         expect($$(`.ant-modal-confirm-${type}`)).toHaveLength(1);
@@ -582,7 +580,7 @@ describe('Modal.confirm triggers callbacks correctly', () => {
     expect(document.querySelectorAll('.my-btn').length).toBe(2);
     expect(document.querySelectorAll('.bamboo-smile').length).toBe(1);
     expect(document.querySelectorAll('.my-modal-confirm').length).toBe(1);
-    ConfigProvider.config({ prefixCls: 'ant', iconPrefixCls: undefined });
+    ConfigProvider.config({ prefixCls: defaultPrefixCls, iconPrefixCls: undefined });
   });
 
   it('should be able to config rootPrefixCls', async () => {
